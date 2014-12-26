@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 ifeq ($(BOARD_USES_SENSORS_DASH),yes)
 
 # HAL module implemenation, not prelinked and stored in
-# hw/<SENSORS_HARDWARE_MODULE_ID>.<ro.product.board>.so
+# hw/<SENSORS_HARDWARE_MODULE_ID>.<TARGET_BOARD_PLATFORM>.so
 include $(CLEAR_VARS)
 
 DASH_ROOT := $(LOCAL_PATH)
@@ -42,7 +42,7 @@ LOCAL_C_INCLUDES += $(yes-c-includes)
 LOCAL_STATIC_LIBRARIES += $(yes-static-libs)
 LOCAL_SHARED_LIBRARIES += $(yes-shared-libs)
 
-LOCAL_MODULE := sensors.default
+LOCAL_MODULE := sensors.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
