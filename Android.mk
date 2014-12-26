@@ -1,5 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
+ifeq ($(BOARD_USES_SENSORS_DASH),yes)
+
 # HAL module implemenation, not prelinked and stored in
 # hw/<SENSORS_HARDWARE_MODULE_ID>.<ro.product.board>.so
 include $(CLEAR_VARS)
@@ -46,3 +48,4 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(call first-makefiles-under, $(LOCAL_PATH)/libs)
 
+endif
