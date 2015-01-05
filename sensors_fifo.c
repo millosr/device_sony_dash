@@ -45,6 +45,8 @@ void sensors_fifo_init()
 
 void sensors_fifo_deinit()
 {
+	if (sensors_fifo.wake_lock_acquire)
+		release_wake_lock("DASH");
 	pthread_mutex_destroy(&sensors_fifo.mutex);
 }
 
