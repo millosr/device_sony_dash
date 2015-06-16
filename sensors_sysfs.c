@@ -19,6 +19,8 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <errno.h>
+#include <string.h>
 #include "sensors_log.h"
 #include "sensors_input_cache.h"
 #include "sensors_sysfs.h"
