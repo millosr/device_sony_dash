@@ -33,6 +33,7 @@
 #define SENSOR_GYROSCOPE_HANDLE             12
 #define SENSOR_ORIENTATION_2_HANDLE         13
 #define SENSOR_PICK_UP_GESTURE_HANDLE       14
+#define SENSOR_SIGNIFICANT_MOTION_HANDLE    15
 /* range for sensors not exposed to android */
 #define SENSOR_INTERNAL_HANDLE_MIN         100
 #define SENSOR_INTERNAL_HANDLE_MAX         110
