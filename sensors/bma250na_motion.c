@@ -18,8 +18,10 @@
 #define LOG_TAG "DASH - bma250_motion"
 
 #include <string.h>
+#include <stdlib.h>
 #include "sensors_log.h"
 #include <unistd.h>
+#include <cutils/properties.h>
 #include <fcntl.h>
 #include <linux/input.h>
 #include <pthread.h>
@@ -235,11 +237,18 @@ static void *bma250_motion_read(void *arg)
 }
 
 static void bma250na_motion_register(struct bma250_motion_sensor_composition *sc) {
+	char value[PROPERTY_VALUE_MAX];
+
 	pthread_mutex_init(&sc->lock, NULL);
 	sc->pickup.handle = sc->significant.handle = sc;
-	
-	(void)sensors_list_register(&sc->pickup.sensor, &sc->pickup.api);
-	(void)sensors_list_register(&sc->significant.sensor, &sc->significant.api);
+
+	property_get("persist.sensors.pickup", value, "0");
+	if (atoi(value))
+		(void)sensors_list_register(&sc->pickup.sensor, &sc->pickup.api);
+
+	property_get("persist.sensors.significant", value, "0");
+	if (atoi(value))
+		(void)sensors_list_register(&sc->significant.sensor, &sc->significant.api);
 }
 
 static struct bma250_motion_sensor_composition bma250_motion = {

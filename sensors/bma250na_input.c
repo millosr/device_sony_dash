@@ -17,8 +17,10 @@
 #define LOG_TAG "DASH - bma250_input"
 
 #include <string.h>
+#include <stdlib.h>
 #include "sensors_log.h"
 #include <unistd.h>
+#include <cutils/properties.h>
 #include <fcntl.h>
 #include <linux/input.h>
 #include <errno.h>
@@ -286,6 +288,10 @@ exit:
 list_constructor(bma250na_input_init_driver);
 void bma250na_input_init_driver()
 {
-	(void)sensors_wrapper_register(&bma250_input.sensor, &bma250_input.api,
+	char value[PROPERTY_VALUE_MAX];
+
+	property_get("persist.sensors.accelerometer", value, "1");
+	if (atoi(value))
+		(void)sensors_wrapper_register(&bma250_input.sensor, &bma250_input.api,
 				       &bma250_input.entry);
 }

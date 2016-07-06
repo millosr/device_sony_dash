@@ -10,6 +10,7 @@ $(SOMC_CFG_SENSORS_ACCEL_BMA250_INPUT)-cflags += -DACC_BMA250_INPUT
 $(SOMC_CFG_SENSORS_ACCEL_BMA250NA_INPUT)-files += bma250na_input.c \
 					wrappers/bma250na_input_accelerometer.c
 $(SOMC_CFG_SENSORS_ACCEL_BMA250NA_INPUT)-cflags += -DACC_BMA250_INPUT
+$(SOMC_CFG_SENSORS_ACCEL_BMA250NA_INPUT)-shared-libs += libcutils
 
 $(SOMC_CFG_SENSORS_COMPASS_LSM303DLH)-cflags += -DST_LSM303DLH
 $(SOMC_CFG_SENSORS_COMPASS_LSM303DLH)-var-compass-lsm303dlh = yes
@@ -155,9 +156,10 @@ $(yes-var-compass-lsm303dlh)-cflags += -I$(LOCAL_PATH)/libs/lsm303dlh \
 endif
 
 #
-# Pickup sensors
+# Pickup and Significant Motion sensors
 #
 $(SOMC_CFG_SENSORS_PICKUP_BMA250NA_MOTION)-files += bma250na_motion.c
+$(SOMC_CFG_SENSORS_PICKUP_BMA250NA_MOTION)-shared-libs += libcutils
 
 #
 # Shared files
