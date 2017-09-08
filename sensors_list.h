@@ -35,6 +35,7 @@ int sensors_list_register(struct sensor_t* sensor, struct sensor_api_t* api);
 void sensors_list_deregister(struct sensor_api_t* api);
 struct sensor_api_t* sensors_list_get_api_from_handle(int handle);
 struct sensor_t* sensors_list_get_sensor_from_handle(int handle);
+int sensors_list_get_type_from_handle(int handle);
 void sensors_list_foreach_api(int (*f)(struct sensor_api_t* api, void* arg),
 			      void *arg);
 
