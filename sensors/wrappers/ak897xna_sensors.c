@@ -34,6 +34,8 @@
 #define TO_STRING_(x) #x
 #define TO_STRING(x) TO_STRING_(x)
 
+#define UNUSED_PARAM(param) ((void)(param))
+
 char const * const SYSFS_REGISTERS_FILE_NAME = TO_STRING( /sys/class/compass/CLASS_DEVICE_NAME/registers );
 
 #define ACC_SENSITIVITY 256
@@ -100,10 +102,10 @@ struct akm_t akm = {
 	.init_ret = SENSOR_OK,
 	.ak897x = {
 		.sensor = {
-			name: AKM_CHIP_NAME,
-			vendor: "Asahi Kasei Corp.",
-			version: sizeof(sensors_event_t),
-			handle: SENSOR_INTERNAL_HANDLE_MIN,
+			.name = AKM_CHIP_NAME,
+			.vendor = "Asahi Kasei Corp.",
+			.version = sizeof(sensors_event_t),
+			.handle = SENSOR_INTERNAL_HANDLE_MIN,
 		},
 		.api = {
 			.init = ak897x_init,
@@ -122,15 +124,15 @@ struct akm_t akm = {
 	},
 	.magnetic = {
 		.sensor = {
-			name: AKM_CHIP_NAME" Magnetic Field",
-			vendor: "Asahi Kasei Corp.",
-			version: sizeof(sensors_event_t),
-			handle: SENSOR_MAGNETIC_FIELD_HANDLE,
-			type: SENSOR_TYPE_MAGNETIC_FIELD,
-			maxRange: AKM_CHIP_MAXRANGE,
-			resolution: AKM_CHIP_RESOLUTION,
-			power: AKM_CHIP_POWER,
-			minDelay: 5000,
+			.name = AKM_CHIP_NAME" Magnetic Field",
+			.vendor = "Asahi Kasei Corp.",
+			.version = sizeof(sensors_event_t),
+			.handle = SENSOR_MAGNETIC_FIELD_HANDLE,
+			.type = SENSOR_TYPE_MAGNETIC_FIELD,
+			.maxRange = AKM_CHIP_MAXRANGE,
+			.resolution = AKM_CHIP_RESOLUTION,
+			.power = AKM_CHIP_POWER,
+			.minDelay = 5000,
 		},
 		.api = {
 			.init = ak897x_init,
@@ -141,15 +143,15 @@ struct akm_t akm = {
 	},
 	.compass = {
 		.sensor = {
-			name: AKM_CHIP_NAME" Compass",
-			vendor: "Asahi Kasei Corp.",
-			version: sizeof(sensors_event_t),
-			handle: SENSOR_ORIENTATION_HANDLE,
-			type: SENSOR_TYPE_ORIENTATION,
-			maxRange: 360,
-			resolution: 100,
-			power: 0.8,
-			minDelay: 5000,
+			.name = AKM_CHIP_NAME" Compass",
+			.vendor = "Asahi Kasei Corp.",
+			.version = sizeof(sensors_event_t),
+			.handle = SENSOR_ORIENTATION_HANDLE,
+			.type = SENSOR_TYPE_ORIENTATION,
+			.maxRange = 360,
+			.resolution = 100,
+			.power = 0.8,
+			.minDelay = 5000,
 		},
 		.api = {
 			.init = ak897x_init,
@@ -257,6 +259,7 @@ err_exit:
 
 static int ak897x_init(struct sensor_api_t *s)
 {
+	UNUSED_PARAM(s);
 	register_map_ak897x regs;
 	int16_t mag_layout[MAG_LAYOUT_ROW][MAG_LAYOUT_CLM] = {{1,0,0},{0,1,0},{0,0,1}};
 	int i;

@@ -36,6 +36,8 @@
 
 #define BMA250_MOTION_NAME "bma250_motion"
 
+#define UNUSED_PARAM(param) ((void)(param))
+
 enum {
 	BMA250_MOTION_TAP,
 	BMA250_MOTION_SLOPE,
@@ -164,6 +166,8 @@ static int bma250_motion_activate(struct sensor_api_t *s, int enable)
 
 static int bma250_motion_set_delay(struct sensor_api_t *s, int64_t ns)
 {
+	UNUSED_PARM(s);
+	UNUSED_PARM(ns);
 	return 0;
 }
 
@@ -254,36 +258,36 @@ static void bma250na_motion_register(struct bma250_motion_sensor_composition *sc
 static struct bma250_motion_sensor_composition bma250_motion = {
 	.pickup = {
 		.sensor = {
-			name: "BMA250 accelerometer Pickup",
-			vendor: "Bosch Sensortec GmbH",
-			version: sizeof(sensors_event_t),
-			handle: SENSOR_PICK_UP_GESTURE_HANDLE,
-			type: SENSOR_TYPE_PICK_UP_GESTURE,
-			power: 0.15,
-			flags: SENSOR_FLAG_WAKE_UP,
+			.name = "BMA250 accelerometer Pickup",
+			.vendor = "Bosch Sensortec GmbH",
+			.version = sizeof(sensors_event_t),
+			.handle = SENSOR_PICK_UP_GESTURE_HANDLE,
+			.type = SENSOR_TYPE_PICK_UP_GESTURE,
+			.power = 0.15,
+			.flags = SENSOR_FLAG_WAKE_UP,
 		},
 		.api = {
-			init: bma250_motion_init,
-			activate: bma250_motion_activate,
-			set_delay: bma250_motion_set_delay,
-			close: bma250_motion_close
+			.init = bma250_motion_init,
+			.activate = bma250_motion_activate,
+			.set_delay = bma250_motion_set_delay,
+			.close = bma250_motion_close
 		},
 	},
 	.significant = {
 		.sensor = {
-			name: "BMA250 accelerometer Significant",
-			vendor: "Bosch Sensortec GmbH",
-			version: sizeof(sensors_event_t),
-			handle: SENSOR_SIGNIFICANT_MOTION_HANDLE,
-			type: SENSOR_TYPE_SIGNIFICANT_MOTION,
-			power: 0.15,
-			flags: SENSOR_FLAG_WAKE_UP,
+			.name = "BMA250 accelerometer Significant",
+			.vendor = "Bosch Sensortec GmbH",
+			.version = sizeof(sensors_event_t),
+			.handle = SENSOR_SIGNIFICANT_MOTION_HANDLE,
+			.type = SENSOR_TYPE_SIGNIFICANT_MOTION,
+			.power = 0.15,
+			.flags = SENSOR_FLAG_WAKE_UP,
 		},
 		.api = {
-			init: bma250_motion_init,
-			activate: bma250_motion_activate,
-			set_delay: bma250_motion_set_delay,
-			close: bma250_motion_close
+			.init = bma250_motion_init,
+			.activate = bma250_motion_activate,
+			.set_delay = bma250_motion_set_delay,
+			.close = bma250_motion_close
 		},
 	},
 };
