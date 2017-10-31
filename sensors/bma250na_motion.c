@@ -166,8 +166,8 @@ static int bma250_motion_activate(struct sensor_api_t *s, int enable)
 
 static int bma250_motion_set_delay(struct sensor_api_t *s, int64_t ns)
 {
-	UNUSED_PARM(s);
-	UNUSED_PARM(ns);
+	UNUSED_PARAM(s);
+	UNUSED_PARAM(ns);
 	return 0;
 }
 
