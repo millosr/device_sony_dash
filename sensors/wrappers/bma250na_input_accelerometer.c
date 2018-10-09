@@ -44,6 +44,9 @@ static struct wrapper_desc bma250_input = {
 		.resolution = 20,
 		.power = 0.003,/* sleep 50ms */
 		.minDelay = 5000,
+		.stringType = SENSOR_STRING_TYPE_ACCELEROMETER,
+		.requiredPermission = 0,
+		.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init = sensors_wrapper_init,

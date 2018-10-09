@@ -135,6 +135,10 @@ struct akm_t akm = {
 			.resolution = AKM_CHIP_RESOLUTION,
 			.power = AKM_CHIP_POWER,
 			.minDelay = 5000,
+			.stringType = SENSOR_STRING_TYPE_MAGNETIC_FIELD,
+			.requiredPermission = 0,
+			.maxDelay = 250000000,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init = ak896x_init,
@@ -154,6 +158,9 @@ struct akm_t akm = {
 			.resolution = 100,
 			.power = 0.8,
 			.minDelay = 5000,
+			.stringType = SENSOR_STRING_TYPE_ORIENTATION,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init = ak896x_init,
@@ -356,8 +363,7 @@ static int ak896x_delay(struct sensor_api_t *s, int64_t ns)
 	akm.delay_requests[sensor] = ns;
 
 	for (i = 0; i < NUMSENSORS; i++) {
-		if ((akm.enable_mask & (1 << i)) &&
-			(akm.delay_requests[i] != CLIENT_DELAY_UNUSED)) {
+		if (akm.delay_requests[i] != CLIENT_DELAY_UNUSED) {
 			if ((delay_tmp == CLIENT_DELAY_UNUSED) ||
 			    (delay_tmp > akm.delay_requests[i]))
 				delay_tmp = akm.delay_requests[i];
@@ -379,15 +385,10 @@ static void ak896x_close(struct sensor_api_t *s)
 	}
 }
 
-static int ak896x_form(void)
-{
-	/* TODO: implement form factor */
-	return AKM_ChangeFormFactor(0);
-}
-
 static void ak896xna_compass_data(struct sensor_api_t *s, struct sensor_data_t *sd)
 {
-	struct wrapper_desc *d = container_of(s, struct wrapper_desc, api);
+	UNUSED_PARAM(s);
+
 	sensors_event_t data;
 	int err;
 	unsigned int cal;

@@ -366,6 +366,9 @@ static struct ak897x_sensor_composition ak897x_compass = {
 			.maxRange = 360,
 			.resolution = 100,
 			.power = 0.8,
+			.stringType = SENSOR_STRING_TYPE_ORIENTATION,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init = ak897x_init,
@@ -388,6 +391,9 @@ static struct ak897x_sensor_composition ak897x_compass = {
 			.maxRange = 23040,
 			.resolution = 100,
 			.power = 0.8,
+			.stringType = SENSOR_STRING_TYPE_ORIENTATION,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init = ak897x_init,
@@ -410,6 +416,10 @@ static struct ak897x_sensor_composition ak897x_compass = {
 			.maxRange = 2000,
 			.resolution = 100,
 			.power = 0.8,
+			.stringType = SENSOR_STRING_TYPE_MAGNETIC_FIELD,
+			.requiredPermission = 0,
+			.maxDelay = 250000000,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init = ak897x_init,

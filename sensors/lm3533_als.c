@@ -115,13 +115,17 @@ static void light_close(struct sensor_api_t *s)
 static struct sensor_desc light_sensor = {
     .sensor = {
         .name = "LM3533 based light sensor",
-        .vendor = "The CyanogenMod Project",
+        .vendor = "Texas Instruments",
         .version = sizeof(sensors_event_t),
         .handle = SENSOR_LIGHTSENSOR_HANDLE,
         .type = SENSOR_TYPE_LIGHT,
         .maxRange = ALS_CHIP_MAXRANGE,
         .resolution = 1.0,
-        .power = 1
+        .power = 1,
+        .stringType = SENSOR_STRING_TYPE_LIGHT,
+        .requiredPermission = 0,
+        .maxDelay = 100000000,
+        .flags = SENSOR_FLAG_ON_CHANGE_MODE,
     },
     .api = {
         .init = light_init,

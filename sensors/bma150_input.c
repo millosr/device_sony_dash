@@ -78,6 +78,9 @@ static struct sensor_desc bma150_input = {
 		.resolution = 20,
 		.power = 0.13,
 		.minDelay = 5000,
+		.stringType = SENSOR_STRING_TYPE_ACCELEROMETER,
+		.requiredPermission = 0,
+		.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init = bma150_input_init,

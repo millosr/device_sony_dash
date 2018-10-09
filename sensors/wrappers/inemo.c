@@ -112,6 +112,9 @@ struct inemoengine_t inemoengine = {
 			.maxRange   = 9.81,
 			.resolution = 0.000001,
 			.power      = 1,
+			.stringType = SENSOR_STRING_TYPE_GRAVITY,
+			.requiredPermission = 0,
+			.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init      = inemo_init,
@@ -130,6 +133,9 @@ struct inemoengine_t inemoengine = {
 			.maxRange   = 9.81,
 			.resolution = 0.000001,
 			.power      = 6,
+			.stringType = SENSOR_STRING_TYPE_LINEAR_ACCELERATION,
+			.requiredPermission = 0,
+			.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init      = inemo_init,
@@ -148,6 +154,9 @@ struct inemoengine_t inemoengine = {
 				.maxRange   = 1,
 				.resolution = 0.000001,
 				.power      = 6,
+				.stringType = SENSOR_STRING_TYPE_ROTATION_VECTOR,
+				.requiredPermission = 0,
+				.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 			},
 			.api = {
 				.init      = inemo_init,
@@ -166,6 +175,9 @@ struct inemoengine_t inemoengine = {
 				.maxRange   = 360,
 				.resolution = 1,
 				.power      = 6,
+				.stringType = SENSOR_STRING_TYPE_ORIENTATION,
+				.requiredPermission = 0,
+				.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 			},
 			.api = {
 				.init      = inemo_init,
@@ -184,6 +196,9 @@ struct inemoengine_t inemoengine = {
 				.maxRange   = 8.2,
 				.resolution = 0.1,
 				.power      = 1,
+				.stringType = SENSOR_STRING_TYPE_MAGNETIC_FIELD,
+				.requiredPermission = 0,
+				.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 			},
 			.api = {
 				.init      = inemo_init,

@@ -104,7 +104,11 @@ static struct sensor_desc light_sensor = {
 		.type = SENSOR_TYPE_LIGHT,
 		.maxRange = ALS_CHIP_MAXRANGE,
 		.resolution = 1.0,
-		.power = 1
+		.power = 1,
+		.stringType = SENSOR_STRING_TYPE_LIGHT,
+		.requiredPermission = 0,
+		.maxDelay = 100000000,
+		.flags = SENSOR_FLAG_ON_CHANGE_MODE,
 	},
 	.api = {
 		.init = light_init,

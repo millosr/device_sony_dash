@@ -10,6 +10,9 @@ static struct sensor_desc accelerometer = {
 		.maxRange   = 16,
 		.resolution = 0.1,
 		.power      = 1,
+		.stringType = SENSOR_STRING_TYPE_ACCELEROMETER,
+		.requiredPermission = 0,
+		.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init      = sensor_xyz_init,

@@ -61,7 +61,10 @@ static struct sensor_desc apds970x = {
 		.type = SENSOR_TYPE_PROXIMITY,
 		.maxRange = 1.0,
 		.resolution = 1.0,
-		.power = 2
+		.power = 2,
+		.stringType = SENSOR_STRING_TYPE_PROXIMITY,
+		.requiredPermission = 0,
+		.flags = SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE,
 	},
 	.api = {
 		.init = apds9700_init,
@@ -142,7 +145,7 @@ static int apds9700_init(struct sensor_api_t *s)
 	struct sensor_desc *d = container_of(s, struct sensor_desc, api);
 	int fd;
 
-	/* check for availablity */
+	/* check for availability */
 	fd = open_input_dev_by_name(PROXIMITY_DEV_NAME, O_RDONLY | O_NONBLOCK);
 	if (fd < 0) {
 		ALOGE("%s: unable to find %s input device!\n", __func__,
@@ -245,7 +248,6 @@ static void *apds9700_read(void *arg)
 		}
 	}
 
-exit:
 	return NULL;
 }
 

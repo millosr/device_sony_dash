@@ -56,6 +56,9 @@ static struct sensor_desc bmp180_pressure_input = {
 		.maxRange = 1100.00, /* hecto pascal */
 		.resolution = 0.01, /* hecto pascal */
 		.power = 0.012, /* mA per sample at ultra high resolution */
+		.stringType = SENSOR_STRING_TYPE_PRESSURE,
+		.requiredPermission = 0,
+		.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init = bmp180_input_init,

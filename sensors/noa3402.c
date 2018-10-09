@@ -52,7 +52,10 @@ static struct sensor_desc noa3402 = {
 		.type = SENSOR_TYPE_PROXIMITY,
 		.maxRange = 1.0,
 		.resolution = 1.0,
-		.power = 20
+		.power = 20,
+		.stringType = SENSOR_STRING_TYPE_PROXIMITY,
+		.requiredPermission = 0,
+		.flags = SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE,
 	},
 	.api = {
 		.init = noa3402_init,

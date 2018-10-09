@@ -70,6 +70,9 @@ static struct engine_t engine = {
 			.maxRange   = 360,
 			.resolution = 1,
 			.power      = 2,
+			.stringType = SENSOR_STRING_TYPE_ORIENTATION,
+			.requiredPermission = 0,
+			.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init      = ecompass_init,
@@ -88,6 +91,9 @@ static struct engine_t engine = {
 			.maxRange   = 8.2,
 			.resolution = 0.1,
 			.power      = 1,
+			.stringType = SENSOR_STRING_TYPE_MAGNETIC_FIELD,
+			.requiredPermission = 0,
+			.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init      = ecompass_init,

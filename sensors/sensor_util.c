@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "DASH - util"
+
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <stdio.h>

@@ -686,6 +686,9 @@ static struct sensor_desc magnetometer = {
 		.maxRange   = 8.2,
 		.resolution = 0.1,
 		.power      = 1,
+		.stringType = SENSOR_STRING_TYPE_MAGNETIC_FIELD,
+		.requiredPermission = 0,
+		.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init      = sensor_init,
@@ -716,6 +719,9 @@ static struct sensor_desc ls303dlh_acc = {
 		.maxRange   = 8,
 		.resolution = 0.1,
 		.power      = 1,
+		.stringType = SENSOR_STRING_TYPE_ACCELEROMETER,
+		.requiredPermission = 0,
+		.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init      = sensor_init,
@@ -746,6 +752,9 @@ static struct sensor_desc ls303dlhc_acc = {
 		.maxRange   = 16,
 		.resolution = 0.1,
 		.power      = 1,
+		.stringType = SENSOR_STRING_TYPE_ACCELEROMETER,
+		.requiredPermission = 0,
+		.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init      = sensor_init,
@@ -782,6 +791,9 @@ static struct sensor_desc compass = {
 		.maxRange   = 360,
 		.resolution = 1,
 		.power      = 2,
+		.stringType = SENSOR_STRING_TYPE_ORIENTATION,
+		.requiredPermission = 0,
+		.flags      = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init      = compass_sensor_init,

@@ -67,12 +67,6 @@ static int ak897x_set_delay(struct sensor_api_t *s, int64_t ns)
 	return 0;
 }
 
-static int ak897x_singleshot(struct sensor_desc *d)
-{
-	return d->sysfs.write(&d->sysfs, "single", DUMMY_DATA,
-			      strlen(DUMMY_DATA));
-}
-
 static int ak897x_set_interval(struct sensor_desc *d, int interval)
 {
 
@@ -150,12 +144,6 @@ exit:
 	return ret;
 }
 
-static int ak897x_form(void)
-{
-	/* TODO: implement form factor */
-	return AKM_ChangeFormFactor(0);
-}
-
 static void *ak897x_read(void *arg)
 {
 	struct input_event evbuf[10];
@@ -217,6 +205,10 @@ static struct sensor_desc ak897xna_magnetic = {
 		.resolution = AKM_CHIP_RESOLUTION,
 		.power = AKM_CHIP_POWER,
 		.minDelay = 5000,
+		.stringType = SENSOR_STRING_TYPE_MAGNETIC_FIELD,
+		.requiredPermission = 0,
+		.maxDelay = 250000000,
+		.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init = ak897x_init,

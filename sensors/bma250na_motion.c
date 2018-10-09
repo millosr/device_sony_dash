@@ -265,6 +265,9 @@ static struct bma250_motion_sensor_composition bma250_motion = {
 			.type = SENSOR_TYPE_PICK_UP_GESTURE,
 			.power = 0.15,
 			.flags = SENSOR_FLAG_WAKE_UP,
+			.stringType = SENSOR_STRING_TYPE_PICK_UP_GESTURE,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init = bma250_motion_init,
@@ -282,6 +285,9 @@ static struct bma250_motion_sensor_composition bma250_motion = {
 			.type = SENSOR_TYPE_SIGNIFICANT_MOTION,
 			.power = 0.15,
 			.flags = SENSOR_FLAG_WAKE_UP,
+			.stringType = SENSOR_STRING_TYPE_SIGNIFICANT_MOTION,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 		},
 		.api = {
 			.init = bma250_motion_init,

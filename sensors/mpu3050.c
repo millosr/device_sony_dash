@@ -39,6 +39,8 @@
 
 #define NUMBER_OF_SENSORTYPE 16
 
+#define UNUSED_PARAM(param) ((void)(param))
+
 static void *the_object;
 static int numSensors;
 
@@ -109,10 +111,11 @@ static int mpu3050_set_delay(struct sensor_api_t *s, int64_t ns)
 
 static void *mpu3050_read(void *arg)
 {
+	UNUSED_PARAM(arg);
+
 	int ret;
 	int i;
 
-	struct mpu3050_sensor_composition *sc = arg;
 	sensors_event_t data[numSensors];
 
 	ret = call_readEvents(the_object, data, NUMBER_OF_SENSORTYPE);
@@ -126,8 +129,6 @@ static void *mpu3050_read(void *arg)
 static int mpu3050_init(struct sensor_api_t *s_api)
 {
 	int32_t handle;
-	int ret;
-	struct stat file_stat;
 
 	struct sensor_desc *d = container_of(s_api, struct sensor_desc, api);
 	struct mpu3050_sensor_composition *sc = d->handle;
@@ -167,6 +168,9 @@ static struct mpu3050_sensor_composition mpu3050_Gyro = {
 			.resolution = 1.0f,
 			.power = 0.5f,
 			.minDelay = 5000,
+			.stringType = SENSOR_STRING_TYPE_ROTATION_VECTOR,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 			.reserved = { },
 		},
 		.api = {
@@ -187,6 +191,9 @@ static struct mpu3050_sensor_composition mpu3050_Gyro = {
 			.resolution = 1.0f,
 			.power = 0.5f,
 			.minDelay = 5000,
+			.stringType = SENSOR_STRING_TYPE_LINEAR_ACCELERATION,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 			.reserved = { },
 		},
 		.api = {
@@ -207,6 +214,9 @@ static struct mpu3050_sensor_composition mpu3050_Gyro = {
 			.resolution = 1.0f,
 			.power = 0.5f,
 			.minDelay = 5000,
+			.stringType = SENSOR_STRING_TYPE_GRAVITY,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 			.reserved = { },
 		},
 		.api = {
@@ -227,6 +237,9 @@ static struct mpu3050_sensor_composition mpu3050_Gyro = {
 			.resolution = 1.0f,
 			.power = 0.5f,
 			.minDelay = 5000,
+			.stringType = SENSOR_STRING_TYPE_GYROSCOPE,
+			.requiredPermission = 0,
+			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 			.reserved = { },
 		},
 		.api = {

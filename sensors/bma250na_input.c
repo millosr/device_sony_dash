@@ -17,10 +17,8 @@
 #define LOG_TAG "DASH - bma250_input"
 
 #include <string.h>
-#include <stdlib.h>
 #include "sensors_log.h"
 #include <unistd.h>
-#include <cutils/properties.h>
 #include <fcntl.h>
 #include <linux/input.h>
 #include <errno.h>
@@ -75,6 +73,9 @@ static struct sensor_desc bma250_input = {
 		.resolution = 20,
 		.power = 0.003, /* sleep 50ms */
 		.minDelay = 5000,
+		.stringType = SENSOR_STRING_TYPE_ACCELEROMETER,
+		.requiredPermission = 0,
+		.flags = SENSOR_FLAG_CONTINUOUS_MODE,
 	},
 	.api = {
 		.init = bma250_input_init,
@@ -192,7 +193,6 @@ static int bma250_input_activate(struct sensor_api_t *s, int enable)
 static int bma250_input_set_delay(struct sensor_api_t *s, int64_t ns)
 {
 	struct sensor_desc *d = container_of(s, struct sensor_desc, api);
-	int fd = d->select_worker.get_fd(&d->select_worker);
 	int64_t usec = ns / 1000;
 	int ret;
 
@@ -288,10 +288,6 @@ exit:
 list_constructor(bma250na_input_init_driver);
 void bma250na_input_init_driver()
 {
-	char value[PROPERTY_VALUE_MAX];
-
-	property_get("persist.sensors.accelerometer", value, "1");
-	if (atoi(value))
-		(void)sensors_wrapper_register(&bma250_input.sensor, &bma250_input.api,
+	(void)sensors_wrapper_register(&bma250_input.sensor, &bma250_input.api,
 				       &bma250_input.entry);
 }
