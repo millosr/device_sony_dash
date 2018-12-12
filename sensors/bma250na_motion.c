@@ -81,6 +81,7 @@ static int bma250_motion_init(struct sensor_api_t *s)
 	struct bma250_motion_sensor_composition *sc = d->handle;
 	int init = sc->pickup.init || sc->significant.init;
 	
+	ALOGI("bma250_motion_init: %s, type: %d", d->sensor.name, d->sensor.type);
 	d->init = 1;
 
 	/* check for availability */
@@ -138,6 +139,9 @@ static int bma250_motion_activate(struct sensor_api_t *s, int enable)
 	struct sensor_desc *d = container_of(s, struct sensor_desc, api);
 	struct bma250_motion_sensor_composition *sc = d->handle;
 	int fd = sc->select_worker.get_fd(&sc->select_worker);
+
+	ALOGI("bma250_motion_activate: %s, type: %d, enable: %d",
+			d->sensor.name, d->sensor.type, enable);
 	
 	//sysfs control
 	bma250_motion_internal_activate(d, enable);
@@ -264,10 +268,9 @@ static struct bma250_motion_sensor_composition bma250_motion = {
 			.handle = SENSOR_PICK_UP_GESTURE_HANDLE,
 			.type = SENSOR_TYPE_PICK_UP_GESTURE,
 			.power = 0.15,
-			.flags = SENSOR_FLAG_WAKE_UP,
 			.stringType = SENSOR_STRING_TYPE_PICK_UP_GESTURE,
 			.requiredPermission = 0,
-			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
+			.flags = SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE,
 		},
 		.api = {
 			.init = bma250_motion_init,
@@ -284,10 +287,9 @@ static struct bma250_motion_sensor_composition bma250_motion = {
 			.handle = SENSOR_SIGNIFICANT_MOTION_HANDLE,
 			.type = SENSOR_TYPE_SIGNIFICANT_MOTION,
 			.power = 0.15,
-			.flags = SENSOR_FLAG_WAKE_UP,
 			.stringType = SENSOR_STRING_TYPE_SIGNIFICANT_MOTION,
 			.requiredPermission = 0,
-			.flags = SENSOR_FLAG_CONTINUOUS_MODE,
+			.flags = SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE,
 		},
 		.api = {
 			.init = bma250_motion_init,

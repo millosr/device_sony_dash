@@ -44,6 +44,8 @@ int sensors_list_register(struct sensor_t* sensor, struct sensor_api_t* api)
 	if (number_of_sensors > DASH_MAX_SENSORS-1)
 		return -1;
 
+	ALOGI("sensors_list_register: %s, type: %d", sensor->name, sensor->type);
+
 	sensor_apis[number_of_sensors] = api;
 	/* We have to copy due to sensor API */
 	memcpy(&sensors[number_of_sensors++], sensor, sizeof(*sensor));
