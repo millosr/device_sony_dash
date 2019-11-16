@@ -20,6 +20,7 @@
 #include "sensors_log.h"
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include "sensors_list.h"
 #include "sensors_config.h"
 #include "sensors_fifo.h"
